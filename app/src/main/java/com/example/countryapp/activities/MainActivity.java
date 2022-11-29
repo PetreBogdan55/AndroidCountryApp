@@ -1,10 +1,13 @@
-package com.example.countryapp;
+package com.example.countryapp.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
+
+import com.example.countryapp.fragments.CountryListFragment;
+import com.example.countryapp.R;
 
 public class MainActivity extends AppCompatActivity {
 

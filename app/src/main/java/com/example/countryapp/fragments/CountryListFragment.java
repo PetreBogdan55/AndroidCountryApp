@@ -1,5 +1,6 @@
-package com.example.countryapp;
+package com.example.countryapp.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,13 +8,17 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+
+import com.example.countryapp.R;
+import com.example.countryapp.activities.CountryActivity;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link CountryListFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class CountryListFragment extends Fragment {
+public class CountryListFragment extends Fragment implements View.OnClickListener{
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -23,6 +28,8 @@ public class CountryListFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private Button countryListButton;
 
     public CountryListFragment() {
         // Required empty public constructor
@@ -59,6 +66,22 @@ public class CountryListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_country_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_country_list, container, false);
+        countryListButton = (Button)view.findViewById(R.id.country_list_button);
+        countryListButton.setOnClickListener(this);
+        return view;
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch(view.getId())
+        {
+            case R.id.country_list_button:
+                Intent intent = new Intent(getActivity(), CountryActivity.class);
+                startActivity(intent);
+                break;
+            default:
+                break;
+        }
     }
 }
