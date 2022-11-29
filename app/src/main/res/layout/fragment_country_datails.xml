@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CountryDatailsFragment">
+    tools:context=".fragments.CountryDatailsFragment">
 
    <LinearLayout
        android:layout_width="match_parent"
@@ -12,12 +12,37 @@
        android:gravity="center_horizontal">
 
        <TextView
+           android:id="@+id/country_details_name_tv"
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
-           android:text="Country Details Fragment"
+           android:text="Country Name"
            android:textSize="20dp"
            android:background="#DCCCDD"
            android:textAlignment="center"/>
+
+       <TextView
+           android:id="@+id/ccountry_details_capital_tv"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:text="Country Capital"
+           android:textSize="20dp"
+           android:background="#DCCCDD"
+           android:textAlignment="center"/>
+
+       <TextView
+           android:id="@+id/country_details_population_tv"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:text="CountryPopulation"
+           android:textSize="20dp"
+           android:background="#DCCCDD"
+           android:textAlignment="center"/>
+
+       <ImageView
+           android:id="@+id/country_details_flag_image_"
+           android:layout_width="500px"
+           android:layout_height="250px"
+           android:layout_marginRight="10px" />
 
        <Button
            android:id="@+id/country_details_back_button"

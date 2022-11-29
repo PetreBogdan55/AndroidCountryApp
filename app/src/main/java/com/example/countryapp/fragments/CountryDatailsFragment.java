@@ -1,4 +1,4 @@
-package com.example.countryapp;
+package com.example.countryapp.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,9 +9,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
-import com.example.countryapp.activities.CountryActivity;
+import com.example.countryapp.R;
 import com.example.countryapp.activities.MainActivity;
+import com.example.countryapp.models.Country;
+import com.squareup.picasso.Picasso;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -30,6 +34,11 @@ public class CountryDatailsFragment extends Fragment  implements View.OnClickLis
     private String mParam2;
 
     private Button backButton;
+    private Country country;
+    private TextView countryName;
+    private TextView countryCapital;
+    private TextView countryPopulation;
+    private ImageView countryFlagImage;
 
     public CountryDatailsFragment() {
         // Required empty public constructor
@@ -60,6 +69,7 @@ public class CountryDatailsFragment extends Fragment  implements View.OnClickLis
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        country=(Country)(getActivity().getIntent().getSerializableExtra("selectedCountry"));
     }
 
     @Override
@@ -69,6 +79,17 @@ public class CountryDatailsFragment extends Fragment  implements View.OnClickLis
         View view = inflater.inflate(R.layout.fragment_country_datails, container, false);
         backButton=(Button)view.findViewById(R.id.country_details_back_button);
         backButton.setOnClickListener(this);
+        countryName=view.findViewById(R.id.country_details_name_tv);
+        countryCapital=view.findViewById(R.id.ccountry_details_capital_tv);
+        countryPopulation=view.findViewById(R.id.country_details_population_tv);
+        countryFlagImage=view.findViewById(R.id.country_details_flag_image_);
+        if(country!=null)
+        {
+            countryName.setText(country.getName());
+            countryCapital.setText(country.getCapital());
+            countryPopulation.setText(String.valueOf(country.getPopulation()));
+            Picasso.get().load(country.getImageURL()).into(countryFlagImage);
+        }
         return view;
     }
 

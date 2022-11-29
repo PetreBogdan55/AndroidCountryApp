@@ -6,7 +6,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 
-import com.example.countryapp.CountryDatailsFragment;
+import com.example.countryapp.fragments.CountryDatailsFragment;
 import com.example.countryapp.R;
 
 public class CountryActivity extends AppCompatActivity {

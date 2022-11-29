@@ -26,7 +26,7 @@ import java.util.ArrayList;
  * Use the {@link CountryListFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class CountryListFragment extends Fragment implements View.OnClickListener, CountryAdapter.ItemClickListener {
+public class CountryListFragment extends Fragment implements CountryAdapter.ItemClickListener {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -37,7 +37,6 @@ public class CountryListFragment extends Fragment implements View.OnClickListene
     private String mParam1;
     private String mParam2;
 
-    private Button countryListButton;
     private CountryAdapter adapter;
 
     public CountryListFragment() {
@@ -77,39 +76,10 @@ public class CountryListFragment extends Fragment implements View.OnClickListene
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_country_list, container, false);
 
-        // buttons
-        countryListButton = (Button)view.findViewById(R.id.country_list_button);
-        countryListButton.setOnClickListener(this);
-
         //recycler view
         ArrayList<Country> countries = new ArrayList<>();
         countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "https://flagpedia.net/data/flags/h80/ro.webp"));
-        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "https://flagpedia.net/data/flags/h80/ro.webp"));
-        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "https://flagpedia.net/data/flags/h80/ro.webp"));
-        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "https://flagpedia.net/data/flags/h80/ro.webp"));
-        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "https://flagpedia.net/data/flags/h80/ro.webp"));
-        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "https://flagpedia.net/data/flags/h80/ro.webp"));
-        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "https://flagpedia.net/data/flags/h80/ro.webp"));
-        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "https://flagpedia.net/data/flags/h80/ro.webp"));
-        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "https://flagpedia.net/data/flags/h80/ro.webp"));
-        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "https://flagpedia.net/data/flags/h80/ro.webp"));
-        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "https://flagpedia.net/data/flags/h80/ro.webp"));
-        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "https://flagpedia.net/data/flags/h80/ro.webp"));
-        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "https://flagpedia.net/data/flags/h80/ro.webp"));
-        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "https://flagpedia.net/data/flags/h80/ro.webp"));
-        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "https://flagpedia.net/data/flags/h80/ro.webp"));
-        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "https://flagpedia.net/data/flags/h80/ro.webp"));
-        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "https://flagpedia.net/data/flags/h80/ro.webp"));
-        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "https://flagpedia.net/data/flags/h80/ro.webp"));
-        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "https://flagpedia.net/data/flags/h80/ro.webp"));
-        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "https://flagpedia.net/data/flags/h80/ro.webp"));
-        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "https://flagpedia.net/data/flags/h80/ro.webp"));
-        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "https://flagpedia.net/data/flags/h80/ro.webp"));
-        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "https://flagpedia.net/data/flags/h80/ro.webp"));
-        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "https://flagpedia.net/data/flags/h80/ro.webp"));
-        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "https://flagpedia.net/data/flags/h80/ro.webp"));
-        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "https://flagpedia.net/data/flags/h80/ro.webp"));
-        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "https://flagpedia.net/data/flags/h80/ro.webp"));
+        countries.add(new Country("Germania", "Bucuresti", "Europa", 18121212, "https://flagpedia.net/data/flags/h80/ro.webp"));
 
 
         RecyclerView recyclerView = view.findViewById(R.id.rvCountries);
@@ -123,20 +93,10 @@ public class CountryListFragment extends Fragment implements View.OnClickListene
     }
 
     @Override
-    public void onClick(View view) {
-        switch(view.getId())
-        {
-            case R.id.country_list_button:
-                Intent intent = new Intent(getActivity(), CountryActivity.class);
-                startActivity(intent);
-                break;
-            default:
-                break;
-        }
-    }
-
-    @Override
     public void onItemClick(View view, int position) {
         Toast.makeText(getContext(), "Ai apasat "+adapter.getItem(position).getName()+" pe randul "+position, Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(getActivity(), CountryActivity.class);
+        intent.putExtra("selectedCountry", (Country)(adapter.getItem(position)));
+        startActivity(intent);
     }
 }
