@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.countryapp.R;
 import com.example.countryapp.models.Country;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -37,6 +39,9 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.ViewHold
     public void onBindViewHolder(ViewHolder holder, int position) {
         Country country = mData.get(position);
         holder.countryTextView.setText(country.getName());
+        holder.countryCapitalTextView.setText(country.getCapital());
+        holder.countryPopulationTextView.setText(String.valueOf(country.getPopulation()));
+        Picasso.get().load(country.getImageURL()).into(holder.countryFlagImageView);
     }
 
     @Override
@@ -46,10 +51,16 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.ViewHold
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView countryTextView;
+        TextView countryCapitalTextView;
+        TextView countryPopulationTextView;
+        ImageView countryFlagImageView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             countryTextView=itemView.findViewById(R.id.tvCountryName);
+            countryCapitalTextView=itemView.findViewById(R.id.tvCountryCapital);
+            countryPopulationTextView=itemView.findViewById(R.id.tvCountryPopulation);
+            countryFlagImageView=itemView.findViewById(R.id.imgURL);
             itemView.setOnClickListener(this);
         }
 

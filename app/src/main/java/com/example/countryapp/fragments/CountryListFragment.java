@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -82,33 +83,40 @@ public class CountryListFragment extends Fragment implements View.OnClickListene
 
         //recycler view
         ArrayList<Country> countries = new ArrayList<>();
-        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "url"));
-        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "url"));
-        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "url"));
-        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "url"));
-        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "url"));
-        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "url"));
-        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "url"));
-        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "url"));
-        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "url"));
-        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "url"));
-        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "url"));
-        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "url"));
-        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "url"));
-        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "url"));
-        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "url"));
-        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "url"));
-        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "url"));
-        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "url"));
-        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "url"));
-        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "url"));
-        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "url"));
-        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "url"));
+        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "https://flagpedia.net/data/flags/h80/ro.webp"));
+        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "https://flagpedia.net/data/flags/h80/ro.webp"));
+        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "https://flagpedia.net/data/flags/h80/ro.webp"));
+        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "https://flagpedia.net/data/flags/h80/ro.webp"));
+        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "https://flagpedia.net/data/flags/h80/ro.webp"));
+        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "https://flagpedia.net/data/flags/h80/ro.webp"));
+        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "https://flagpedia.net/data/flags/h80/ro.webp"));
+        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "https://flagpedia.net/data/flags/h80/ro.webp"));
+        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "https://flagpedia.net/data/flags/h80/ro.webp"));
+        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "https://flagpedia.net/data/flags/h80/ro.webp"));
+        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "https://flagpedia.net/data/flags/h80/ro.webp"));
+        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "https://flagpedia.net/data/flags/h80/ro.webp"));
+        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "https://flagpedia.net/data/flags/h80/ro.webp"));
+        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "https://flagpedia.net/data/flags/h80/ro.webp"));
+        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "https://flagpedia.net/data/flags/h80/ro.webp"));
+        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "https://flagpedia.net/data/flags/h80/ro.webp"));
+        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "https://flagpedia.net/data/flags/h80/ro.webp"));
+        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "https://flagpedia.net/data/flags/h80/ro.webp"));
+        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "https://flagpedia.net/data/flags/h80/ro.webp"));
+        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "https://flagpedia.net/data/flags/h80/ro.webp"));
+        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "https://flagpedia.net/data/flags/h80/ro.webp"));
+        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "https://flagpedia.net/data/flags/h80/ro.webp"));
+        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "https://flagpedia.net/data/flags/h80/ro.webp"));
+        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "https://flagpedia.net/data/flags/h80/ro.webp"));
+        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "https://flagpedia.net/data/flags/h80/ro.webp"));
+        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "https://flagpedia.net/data/flags/h80/ro.webp"));
+        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "https://flagpedia.net/data/flags/h80/ro.webp"));
+
 
         RecyclerView recyclerView = view.findViewById(R.id.rvCountries);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter=new CountryAdapter(getContext(), countries);
         adapter.setClickListener(this);
+        recyclerView.addItemDecoration(new DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.VERTICAL));
         recyclerView.setAdapter(adapter);
 
         return view;
