@@ -1,10 +1,13 @@
 package com.example.countryapp.fragments;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,7 +20,9 @@ import android.widget.Toast;
 import com.example.countryapp.R;
 import com.example.countryapp.activities.CountryActivity;
 import com.example.countryapp.adapters.CountryAdapter;
+import com.example.countryapp.adapters.SwipeToDeleteCallback;
 import com.example.countryapp.models.Country;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 
@@ -80,7 +85,15 @@ public class CountryListFragment extends Fragment implements CountryAdapter.Item
         ArrayList<Country> countries = new ArrayList<>();
         countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "https://flagpedia.net/data/flags/h80/ro.webp"));
         countries.add(new Country("Germania", "Bucuresti", "Europa", 18121212, "https://flagpedia.net/data/flags/h80/ro.webp"));
-
+        countries.add(new Country("Germania", "Bucuresti", "Europa", 18121212, "https://flagpedia.net/data/flags/h80/ro.webp"));
+        countries.add(new Country("Germania", "Bucuresti", "Europa", 18121212, "https://flagpedia.net/data/flags/h80/ro.webp"));
+        countries.add(new Country("Germania", "Bucuresti", "Europa", 18121212, "https://flagpedia.net/data/flags/h80/ro.webp"));
+        countries.add(new Country("Germania", "Bucuresti", "Europa", 18121212, "https://flagpedia.net/data/flags/h80/ro.webp"));
+        countries.add(new Country("Germania", "Bucuresti", "Europa", 18121212, "https://flagpedia.net/data/flags/h80/ro.webp"));
+        countries.add(new Country("Germania", "Bucuresti", "Europa", 18121212, "https://flagpedia.net/data/flags/h80/ro.webp"));
+        countries.add(new Country("Germania", "Bucuresti", "Europa", 18121212, "https://flagpedia.net/data/flags/h80/ro.webp"));
+        countries.add(new Country("Germania", "Bucuresti", "Europa", 18121212, "https://flagpedia.net/data/flags/h80/ro.webp"));
+        countries.add(new Country("Germania", "Bucuresti", "Europa", 18121212, "https://flagpedia.net/data/flags/h80/ro.webp"));
 
         RecyclerView recyclerView = view.findViewById(R.id.rvCountries);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -88,6 +101,32 @@ public class CountryListFragment extends Fragment implements CountryAdapter.Item
         adapter.setClickListener(this);
         recyclerView.addItemDecoration(new DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.VERTICAL));
         recyclerView.setAdapter(adapter);
+
+
+        //swipe do delete
+        SwipeToDeleteCallback swipeToDeleteCallback=new SwipeToDeleteCallback(getContext()) {
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                final int position = viewHolder.getAdapterPosition();
+                final Country item = adapter.getItem(position);
+                adapter.removeItem(position);
+
+                Snackbar snackbar = Snackbar.make(view, "Item a fost sters din lista", Snackbar.LENGTH_LONG);
+                snackbar.setAction("UNDO", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        adapter.restoreItem(item, position);
+                        recyclerView.scrollToPosition(position);
+                    }
+                });
+
+                snackbar.setActionTextColor(Color.YELLOW);
+                snackbar.show();
+            }
+        };
+
+        ItemTouchHelper itemTouchHelper=new ItemTouchHelper(swipeToDeleteCallback);
+        itemTouchHelper.attachToRecyclerView(recyclerView);
 
         return view;
     }

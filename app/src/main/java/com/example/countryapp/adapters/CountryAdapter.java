@@ -76,6 +76,18 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.ViewHold
         return mData.get(id);
     }
 
+    public void removeItem(int position)
+    {
+        mData.remove(position);      //---> Lista din spate
+        notifyItemRemoved(position); //---> UI
+    }
+
+    public void restoreItem(Country item, int position)
+    {
+        mData.add(position, item);    //--->Lista din spate
+        notifyItemInserted(position); //-->UI
+    }
+
     public void setClickListener(ItemClickListener itemClickListener)
     {
         this.mClickListener=itemClickListener;
