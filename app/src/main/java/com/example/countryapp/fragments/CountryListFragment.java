@@ -4,21 +4,28 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.countryapp.R;
 import com.example.countryapp.activities.CountryActivity;
+import com.example.countryapp.adapters.CountryAdapter;
+import com.example.countryapp.models.Country;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link CountryListFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class CountryListFragment extends Fragment implements View.OnClickListener{
+public class CountryListFragment extends Fragment implements View.OnClickListener, CountryAdapter.ItemClickListener {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -30,6 +37,7 @@ public class CountryListFragment extends Fragment implements View.OnClickListene
     private String mParam2;
 
     private Button countryListButton;
+    private CountryAdapter adapter;
 
     public CountryListFragment() {
         // Required empty public constructor
@@ -67,8 +75,42 @@ public class CountryListFragment extends Fragment implements View.OnClickListene
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_country_list, container, false);
+
+        // buttons
         countryListButton = (Button)view.findViewById(R.id.country_list_button);
         countryListButton.setOnClickListener(this);
+
+        //recycler view
+        ArrayList<Country> countries = new ArrayList<>();
+        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "url"));
+        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "url"));
+        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "url"));
+        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "url"));
+        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "url"));
+        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "url"));
+        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "url"));
+        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "url"));
+        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "url"));
+        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "url"));
+        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "url"));
+        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "url"));
+        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "url"));
+        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "url"));
+        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "url"));
+        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "url"));
+        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "url"));
+        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "url"));
+        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "url"));
+        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "url"));
+        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "url"));
+        countries.add(new Country("Romania", "Bucuresti", "Europa", 18121212, "url"));
+
+        RecyclerView recyclerView = view.findViewById(R.id.rvCountries);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        adapter=new CountryAdapter(getContext(), countries);
+        adapter.setClickListener(this);
+        recyclerView.setAdapter(adapter);
+
         return view;
     }
 
@@ -83,5 +125,10 @@ public class CountryListFragment extends Fragment implements View.OnClickListene
             default:
                 break;
         }
+    }
+
+    @Override
+    public void onItemClick(View view, int position) {
+        Toast.makeText(getContext(), "Ai apasat "+adapter.getItem(position).getName()+" pe randul "+position, Toast.LENGTH_SHORT).show();
     }
 }
